@@ -55,11 +55,13 @@ function getData(chosen) {
   const question = document.createElement("h2");
 
   const h4 = document.createElement("h4");
-  fetch("./dataset.json")
+  fetch("https://api.npoint.io/ccbee995f5bc63e99a36")
     .then((response) => {
+      console.log(response);
       return response.json();
     })
     .then((data) => {
+      console.log(data);
       return data[optionsSelected];
     })
     .then((optionsSelection) => {
@@ -113,9 +115,9 @@ function getData(chosen) {
           options.getElementsByClassName("classname")
         );
 
-        nextBtn.disabled = true;
         elements.forEach(function (element) {
           element.addEventListener("click", (e) => {
+            nextBtn.disabled = true;
             var optionsCollection = document.querySelectorAll("input");
             var optionsArr = Array.from(optionsCollection);
             optionsArr.forEach(function (current) {
@@ -142,10 +144,15 @@ function getData(chosen) {
         }
       });
       prevBtn.addEventListener("click", () => {
-        nextBtn.disabled = false;
         if (x > 0) {
           console.log(localStorage.getItem(`${x}`));
-
+          if (localStorage.getItem("x")) {
+            var optionsCollection = document.querySelectorAll("input");
+            var optionsArr = Array.from(optionsCollection);
+            optionsArr.forEach(function (current) {
+              current.setAttribute("disabled", true);
+            });
+          }
           question.innerText = optionsSelection[x - 1].question;
 
           options.innerHTML = ` <input type="radio" name="selection" disabled value= "${
