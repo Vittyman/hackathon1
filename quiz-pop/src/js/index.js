@@ -87,7 +87,7 @@ function getData(chosen) {
           });
 
           console.log(e.target.value);
-          localStorage.setItem(`${x}`, `${e.target.value}`);
+          
           if (finalanswer.includes(e.target.value)) {
             score += 1;
           }
@@ -124,9 +124,8 @@ function getData(chosen) {
               current.setAttribute("disabled", true);
             });
 
-            const finalanswer = optionsSelection[x + 1].answer;
-            localStorage.setItem(`${x}`, `${e.target.value}`);
-
+            const finalanswer = optionsSelection[x ].answer;
+            console.log(finalanswer);
             if (finalanswer.includes(e.target.value)) {
               score += 1;
             }
@@ -138,8 +137,6 @@ function getData(chosen) {
         } else if (x < 0) {
           x = 0;
         } else {
-          console.log(optionsSelection[1].category);
-
           pageLoad();
         }
       });
