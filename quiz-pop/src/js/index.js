@@ -55,7 +55,7 @@ function getData(chosen) {
   const question = document.createElement("h2");
 
   const h4 = document.createElement("h4");
-  fetch("http://localhost:3000")
+  fetch("./dataset.json")
     .then((response) => {
       return response.json();
     })
